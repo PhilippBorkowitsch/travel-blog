@@ -8,6 +8,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { BlogAComponent } from './blog-a/blog-a.component';
 import { BlogPComponent } from './blog-p/blog-p.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { BlogPComponent } from './blog-p/blog-p.component';
     LoginPageComponent,
     MainPageComponent,
     BlogAComponent,
-    BlogPComponent
+    BlogPComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
