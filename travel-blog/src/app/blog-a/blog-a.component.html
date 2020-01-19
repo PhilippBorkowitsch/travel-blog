@@ -1,1 +1,11 @@
-<p>blog-a works!</p>
+<div class="header">
+  <h2>Andis Blog</h2>
+</div>
+<div class="mainframe">
+  <app-blog-entry
+    *ngFor="let entry of entries"
+    [dataString]="entry"
+    (reload)="loadEntries()"
+  ></app-blog-entry>
+</div>
+<router-outlet></router-outlet>
