@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "allowSyntheticDefaultImports": true,
+        "target": "ES2017",
         "sourceMap": true,
         "outDir": "./dist/",
         "moduleResolution": "node",
@@ -10,8 +11,17 @@
             "node_modules/@types"
         ],
         "lib": [
-            "es2017",
+            "es2018",
             "dom"
-        ]
-    }
+        ],
+        "module": "commonjs",
+    },
+    "type": "module",
+    "include": [
+        "src/**/*.ts",
+        "index.ts"
+      ],
+      "exclude": [
+        "node_modules"
+      ]
 }
