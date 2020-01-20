@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import { NgImageSliderComponent } from "ng-image-slider";
+import { ShareDataService } from "../share-data.service";
 
 @Component({
   selector: "app-blog-entry",
@@ -6,16 +8,72 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./blog-entry.component.sass"]
 })
 export class BlogEntryComponent implements OnInit {
-  // die Blogpost Daten, die von blog-a oder blog-b als String übergeben werden
-  @Input() dataString: string;
+  // für die Foto Slideshow
+  @ViewChild("nav", { static: false }) slider: NgImageSliderComponent;
 
   // die Blogpost Daten im JSON Format
-  private entryJSON;
+  private postData;
+  private imageObject = [
+    {
+      image: "../../assets/img/2020-01-13-Irland_01.jpg",
+      thumbImage: "../../assets/img/2020-01-13-Irland_01.jpg"
+    },
+    {
+      image: "../../assets/img/2020-01-13-Irland_02.jpg",
+      thumbImage: "../../assets/img/2020-01-13-Irland_02.jpg"
+    },
+    {
+      image: "../../assets/img/Creartograph_1.jpg",
+      thumbImage: "../../assets/img/Creartograph_1.jpg"
+    },
+    {
+      image: "../../assets/img/Creartograph_2.jpg",
+      thumbImage: "../../assets/img/Creartograph_2.jpg"
+    },
+    {
+      image: "../../assets/img/Creartograph_3.jpg",
+      thumbImage: "../../assets/img/Creartograph_3.jpg"
+    },
+    {
+      image: "../../assets/img/Creartograph_4.jpg",
+      thumbImage: "../../assets/img/Creartograph_4.jpg"
+    },
+    {
+      image: "../../assets/img/Creartograph_5.jpg",
+      thumbImage: "../../assets/img/Creartograph_5.jpg"
+    },
+    {
+      image: "../../assets/img/Creartograph_6.jpg",
+      thumbImage: "../../assets/img/Creartograph_6.jpg"
+    },
+    {
+      image: "../../assets/img/Creartograph_7.jpg",
+      thumbImage: "../../assets/img/Creartograph_7.jpg"
+    },
+    {
+      image: "../../assets/img/Creartograph_8.jpg",
+      thumbImage: "../../assets/img/Creartograph_8.jpg"
+    },
+    {
+      image: "../../assets/img/Creartograph_9.jpg",
+      thumbImage: "../../assets/img/Creartograph_9.jpg"
+    }
+  ];
 
-  constructor() {}
+  constructor(private _sds: ShareDataService) {}
 
   ngOnInit() {
-    this.entryJSON = JSON.parse(JSON.stringify(this.dataString)); //Stringify to remove any JSON-specific remains and re-parse the resulting string to actual JSON-Object
-    console.log("success");
+    console.log(this._sds.getPostData());
+    this.postData = this._sds.getPostData();
+  }
+
+  prevImageClick() {
+    this.slider.prev();
+    console.log("previous");
+  }
+
+  nextImageClick() {
+    this.slider.next();
+    console.log("next");
   }
 }

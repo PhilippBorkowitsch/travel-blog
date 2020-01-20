@@ -11,6 +11,7 @@ import { BlogPComponent } from "./blog-p/blog-p.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { BlogEntryComponent } from "./blog-entry/blog-entry.component";
 import { HttpClientModule } from "@angular/common/http";
+import { NgImageSliderModule } from "ng-image-slider";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgImageSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

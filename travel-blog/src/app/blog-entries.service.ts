@@ -13,9 +13,15 @@ export class BlogEntriesService {
       {
         title: "Day 1",
         description: "Heute war ein sonniger Tag. \n blabla",
-        id: 3
+        id: 3,
+        date: "2019_01_13"
       },
-      { title: "Day 2", description: "Heute waren wir shoppen", id: 4 }
+      {
+        title: "Day 2",
+        description: "Heute waren wir shoppen",
+        id: 4,
+        date: "2019_01_14"
+      }
     ];
     // return this.http.post("api/login", author);
   }
