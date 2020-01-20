@@ -1,8 +1,10 @@
 import {Model, Column, Table, BelongsTo, Scopes, CreatedAt, UpdatedAt, ForeignKey, DefaultScope} from "sequelize-typescript";
 import { Post } from "./Post.model";
 
-@DefaultScope(() => ({
-    include: [Post],
+@Scopes(() => ({
+    full: {
+        include: [Post],
+    },
 }))
 
 @Table

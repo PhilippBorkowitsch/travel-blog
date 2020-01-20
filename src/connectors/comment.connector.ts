@@ -21,7 +21,7 @@ export const postComment = (req: Request, res: Response, next: NextFunction) => 
 };
 
 export const getComments = (req: Request, res: Response, next: NextFunction) => {
-    Comment.findAll().then((comments) => {
+    Comment.scope('full').findAll().then((comments) => {
         res
             .status(200)
             .json(comments);
@@ -33,7 +33,7 @@ export const getComments = (req: Request, res: Response, next: NextFunction) => 
 };
 
 export const getCommentsOfPost = (req: Request, res: Response, next: NextFunction) => {
-    Comment.findAll({
+    Comment.scope('full').findAll({
         where: {
             postId: req.params.postId,
         }

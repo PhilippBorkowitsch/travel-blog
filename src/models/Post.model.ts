@@ -1,9 +1,12 @@
 import {Model, Column, Table, BelongsTo, Scopes, CreatedAt, UpdatedAt, ForeignKey, HasMany, DefaultScope} from "sequelize-typescript";
 import { Image } from "./Image.model";
 import { User } from "./User.model";
+import { Comment } from "./Comment.model";
 
-@DefaultScope(() => ({
-    include: [Image, User],
+@Scopes(() => ({
+    full: {
+        include: [User, Comment, Image],
+    },
 }))
 
 @Table
@@ -23,6 +26,9 @@ export class Post extends Model<Post> {
 
     @HasMany(() => Image)
     images: Image[];
+
+    @HasMany(() => Comment)
+    comments: Comment[];
 
     @ForeignKey(() => User)
     @Column
