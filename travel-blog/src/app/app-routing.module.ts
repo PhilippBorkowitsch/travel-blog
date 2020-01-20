@@ -24,17 +24,15 @@ const routes: Routes = [
   },
   {
     path: "andisblog",
-    component: BlogAComponent,
-    children: [
-      {
-        path: "post/:date",
-        component: BlogEntryComponent
-      }
-    ]
+    component: BlogAComponent
   },
   {
     path: "philippsblog",
     component: BlogPComponent
+  },
+  {
+    path: "post/:date",
+    component: BlogEntryComponent
   },
   {
     path: "**",
