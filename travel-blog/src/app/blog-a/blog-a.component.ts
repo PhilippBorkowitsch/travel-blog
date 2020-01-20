@@ -11,7 +11,7 @@ import { ShareDataService } from "../share-data.service";
 })
 export class BlogAComponent implements OnInit {
   // Array mit allen Blogposts
-  private entries;
+  private entries = null;
 
   // macht bisher nichts
   // vielleicht: checkt, ob eingeloggter User ein Author ist?
@@ -23,13 +23,14 @@ export class BlogAComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // temporäre Lösung, muss später gelöscht werden
-    this.entries = this._bes.getAllBlogEntries(1);
+    console.log(this.entries);
+    this._bes.addNewPost("bla", "bla", "bla", "bla", "bla");
 
     // das funktioniert erst, sobald der getter mit der db verknüpft ist
-    // this.bes.getAllBlogEntries(1).subscribe(entriesArray => {
-    //   this.entries = entriesArray;
-    // });
+    this._bes.getAllBlogEntries().subscribe(entriesArray => {
+      this.entries = entriesArray;
+      console.log(this.entries);
+    });
   }
 
   // Funktion wird bisher nicht genutzt
