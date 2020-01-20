@@ -48,7 +48,7 @@ export const getImage = (req: Request, res: Response, next: NextFunction) => {
 };
 
 export const getImagesOfPost = (req: Request, res: Response, next: NextFunction) => {
-    Image.findOne({
+    Image.scope('full').findOne({
         where: {
             postId: req.params.postId,
         }

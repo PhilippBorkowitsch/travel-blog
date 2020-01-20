@@ -20,16 +20,32 @@ sequelize.sync({force: true}).then(() => {
     const user = new User({
         userName: 'Birgitt',
         password: 'Markus',
+        email: 'haha@haha.haha',
         salt: 'willstDuMich'
     });
-    user.save();
+    
+    const post = new Post({
+        text: 'abcd',
+        userId: 1,
+    });
+    
+    const comment = new Comment({
+        text: 'abc',
+        userId: 1,
+        postId: 1,
+    });
+    user.save().then(() => {
+        return post.save();
+    }).then(() => {
+        return comment.save();
+    });
 });
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 /**

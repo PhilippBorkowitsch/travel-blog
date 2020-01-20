@@ -46,6 +46,7 @@ export const postUser = async (req: Request, res: Response, next: NextFunction) 
 
 export const getUsers = (req: Request, res: Response, next: NextFunction) => {
     User
+        .scope('full')
         .findAll()
         .then((users: User[]) => {
             res
@@ -62,6 +63,7 @@ export const getUsers = (req: Request, res: Response, next: NextFunction) => {
 
 export const getUser = (req: Request, res: Response, next: NextFunction) => {
     User
+        .scope('full')
         .findOne({
             where: {
                 id: req.params.id

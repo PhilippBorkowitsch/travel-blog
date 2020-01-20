@@ -1,9 +1,10 @@
 import {Model, Column, Table, BelongsTo, Scopes, CreatedAt, UpdatedAt, ForeignKey, DefaultScope} from "sequelize-typescript";
 import { User } from "./User.model";
-
-@DefaultScope(() => ({
-    attributes: ['id', 'userName', 'email'],
-    include: [User],
+import { Post } from "./Post.model";
+@Scopes(() => ({
+    full: {
+        include: [User, Post],
+    },
 }))
 
 @Table
@@ -11,6 +12,13 @@ export class Comment extends Model<Comment> {
     
     @Column
     text: string;
+
+    @ForeignKey(() => Post)
+    @Column
+    postId: number;
+
+    @BelongsTo(() => Post)
+    post: Post;
 
     @ForeignKey(() => User)
     @Column
