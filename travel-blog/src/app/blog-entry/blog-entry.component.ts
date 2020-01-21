@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import { NgImageSliderComponent } from "ng-image-slider";
 import { ShareDataService } from "../share-data.service";
+import { BlogEntriesService } from "../blog-entries.service";
 
 @Component({
   selector: "app-blog-entry",
@@ -13,6 +14,7 @@ export class BlogEntryComponent implements OnInit {
 
   // die Blogpost Daten im JSON Format
   private postData;
+  public comments;
   private imageObject = [
     {
       image: "../../assets/img/2020-01-13-Irland_01.jpg",
@@ -60,11 +62,18 @@ export class BlogEntryComponent implements OnInit {
     }
   ];
 
-  constructor(private _sds: ShareDataService) {}
+  constructor(
+    private _sds: ShareDataService,
+    private _bes: BlogEntriesService
+  ) {}
 
   ngOnInit() {
     this.postData = this._sds.getPostData();
     console.log(this.postData);
+    this._bes.getCommentsOfPost(this.postData.id).subscribe(comArray => {
+      this.comments = comArray;
+      console.log(this.comments);
+    });
   }
 
   prevImageClick() {

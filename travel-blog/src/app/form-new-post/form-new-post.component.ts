@@ -28,9 +28,9 @@ export class FormNewPostComponent implements OnInit {
     this.modalService.open(this.content);
   }
 
-  addPost(password, author, title, post, citation, song, images) {
+  addPost(password, author, title, post, date, citation, song, images) {
     let userid;
-    if (password == process.env.AUTHOR_PASSWORD) {
+    if (password == "test123") {
       if (author == "Andrea") {
         userid = 1;
       } else if (author == "Philipp") {
@@ -40,12 +40,19 @@ export class FormNewPostComponent implements OnInit {
       }
 
       this._bes
-        .addNewPost(title, post, citation, song, userid)
+        .addNewPost(title, post, date, citation, song, userid)
         .subscribe(newPost => {
+          // images need to be added still, doesn't work yet
           if (images != null) {
             images.forEach(img => {
-              this._bes.addNewImage(img.name, img.description, 1);
+              this._bes
+                .addNewImage(img.name, img.description, 1)
+                .subscribe(newImage => {
+                  this.redirect(userid);
+                });
             });
+          } else {
+            this.redirect(userid);
           }
           console.log(newPost);
         });
@@ -54,7 +61,15 @@ export class FormNewPostComponent implements OnInit {
     }
   }
 
-  redirect() {
-    this._router.navigate(["mainpage"]);
+  redirect(authorId) {
+    // sollte so geändert werden, dass nur das /newpost wieder gelöscht wird
+    if (authorId == 1) {
+      this._router.navigate(["./"]);
+      console.log(this._router.url);
+    } else if (authorId == 2) {
+      this._router.navigate(["philippsblog"]);
+    } else {
+      this._router.navigate(["mainpage"]);
+    }
   }
 }

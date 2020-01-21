@@ -5,7 +5,7 @@
   <a (click)="openPost(entry)" [routerLink]="['../post',entry.date]">{{ entry.title }}</a>
 </div>
 
-<button class="btn btn-lg btn-outline-primary" (click)="newpost.open()">Add Post</button>
+<button class="btn btn-lg btn-outline-primary" [routerLink]="['newpost']" (click)="newpost.open()">Add Post</button>
 <app-form-new-post #newpost></app-form-new-post>
 
 <router-outlet></router-outlet>

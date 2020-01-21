@@ -6,7 +6,7 @@
 </div>
 <div>
   <button>Add Comment</button>
-  <div>
-    <app-blog-comment></app-blog-comment>
+  <div *ngFor="let comment of comments">
+    <app-blog-comment [dataString]="comment"></app-blog-comment>
   </div>
 </div>

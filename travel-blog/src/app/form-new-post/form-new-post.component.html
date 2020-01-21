@@ -16,6 +16,9 @@
         <input #title placeholder="Enter the title of your post"/>
     </div>
     <div>
+        <input #date placeholder="e.g. Mon_13_01_2020"/>
+    </div>
+    <div>
         <textarea #post placeholder="Your Blog Post"></textarea>
     </div>
     <div>
@@ -30,6 +33,6 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Close</button>
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close();addPost(password.value, author.value, title.value, post.value, citation.value, song.value, null); redirect()">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close();addPost(password.value, author.value, title.value, post.value, date.value, citation.value, song.value, null)">Save</button>
 </div>
 </ng-template>
