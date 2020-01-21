@@ -63,8 +63,8 @@ export class BlogEntryComponent implements OnInit {
   constructor(private _sds: ShareDataService) {}
 
   ngOnInit() {
-    console.log(this._sds.getPostData());
     this.postData = this._sds.getPostData();
+    console.log(this.postData);
   }
 
   prevImageClick() {

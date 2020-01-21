@@ -12,6 +12,11 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { BlogEntryComponent } from "./blog-entry/blog-entry.component";
 import { HttpClientModule } from "@angular/common/http";
 import { NgImageSliderModule } from "ng-image-slider";
+import { BlogCommentComponent } from "./blog-comment/blog-comment.component";
+import { FormNewPostComponent } from "./form-new-post/form-new-post.component";
+import { NgbModule, NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { BlogEntriesService } from "./blog-entries.service";
+import { ShareDataService } from "./share-data.service";
 
 @NgModule({
   declarations: [
@@ -21,16 +26,19 @@ import { NgImageSliderModule } from "ng-image-slider";
     BlogAComponent,
     BlogPComponent,
     PageNotFoundComponent,
-    BlogEntryComponent
+    BlogEntryComponent,
+    BlogCommentComponent,
+    FormNewPostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    NgImageSliderModule
+    NgImageSliderModule,
+    NgbModule
   ],
-  providers: [],
+  providers: [BlogEntriesService, ShareDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,0 +1,35 @@
+<ng-template #content let-modal>
+<div class="modal-header">
+    <h4 class="modal-title">Enter new Post</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div>
+        <input type="password" #password placeholder="Enter password"/>
+    </div>
+    <div>
+        <input #author placeholder="Enter your name"/>
+    </div>
+    <div>
+        <input #title placeholder="Enter the title of your post"/>
+    </div>
+    <div>
+        <textarea #post placeholder="Your Blog Post"></textarea>
+    </div>
+    <div>
+        <input #citation placeholder="Citation of the day"/>
+    </div>
+    <div>
+        <input #song placeholder="Song of the day"/>
+    </div>
+    <div>
+        <input #img placeholder="Upload your images"/>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Close</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close();addPost(password.value, author.value, title.value, post.value, citation.value, song.value, null); redirect()">Save</button>
+</div>
+</ng-template>

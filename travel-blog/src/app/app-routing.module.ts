@@ -6,6 +6,7 @@ import { BlogAComponent } from "./blog-a/blog-a.component";
 import { BlogPComponent } from "./blog-p/blog-p.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { BlogEntryComponent } from "./blog-entry/blog-entry.component";
+import { FormNewPostComponent } from "./form-new-post/form-new-post.component";
 
 const routes: Routes = [
   //if path empty, should be redirected to main or Login if user is logged out
@@ -24,7 +25,13 @@ const routes: Routes = [
   },
   {
     path: "andisblog",
-    component: BlogAComponent
+    component: BlogAComponent,
+    children: [
+      {
+        path: "newpost",
+        component: FormNewPostComponent
+      }
+    ]
   },
   {
     path: "philippsblog",

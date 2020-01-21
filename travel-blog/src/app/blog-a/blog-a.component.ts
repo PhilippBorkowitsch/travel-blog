@@ -3,6 +3,8 @@ import { BlogEntriesService } from "../blog-entries.service";
 import { BlogEntryComponent } from "../blog-entry/blog-entry.component";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ShareDataService } from "../share-data.service";
+import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { FormNewPostComponent } from "../form-new-post/form-new-post.component";
 
 @Component({
   selector: "app-blog-a",
@@ -19,17 +21,16 @@ export class BlogAComponent implements OnInit {
     private _bes: BlogEntriesService,
     private _router: Router,
     private _sds: ShareDataService,
-    private _activeRoute: ActivatedRoute
+    private _activeRoute: ActivatedRoute,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
-    console.log(this.entries);
-    this._bes.addNewPost("bla", "bla", "bla", "bla", "bla");
-
     // das funktioniert erst, sobald der getter mit der db verknüpft ist
     this._bes.getAllBlogEntries().subscribe(entriesArray => {
       this.entries = entriesArray;
       console.log(this.entries);
+      this.loadEntries();
     });
   }
 
@@ -41,5 +42,9 @@ export class BlogAComponent implements OnInit {
   openPost(entry) {
     this._sds.changePostData(entry);
     console.log(this._sds.getPostData());
+  }
+
+  open() {
+    const modalRef = this.modalService.open(FormNewPostComponent);
   }
 }

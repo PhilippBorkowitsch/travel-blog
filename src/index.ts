@@ -24,6 +24,7 @@ sequelize.sync({ force: true }).then(() => {
   });
 
   const post = new Post({
+    title: "fixtitletest",
     text: "abcd",
     userId: 1
   });

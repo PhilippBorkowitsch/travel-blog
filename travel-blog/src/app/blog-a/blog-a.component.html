@@ -2,7 +2,10 @@
   <h2>Andis Blog</h2>
 </div>
 <div class="mainframe" *ngFor="let entry of entries">
-  <a (click)="openPost(entry)" [routerLink]="['../post',entry.date]"
-    (reload)="loadEntries()">{{ entry.title }}</a>
+  <a (click)="openPost(entry)" [routerLink]="['../post',entry.date]">{{ entry.title }}</a>
 </div>
+
+<button class="btn btn-lg btn-outline-primary" (click)="newpost.open()">Add Post</button>
+<app-form-new-post #newpost></app-form-new-post>
+
 <router-outlet></router-outlet>
