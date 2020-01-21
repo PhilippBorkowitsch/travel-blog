@@ -10,7 +10,6 @@ export class ShareDataService {
 
   changePostData(postData) {
     this.postData = postData;
-    console.log(this.postData);
   }
 
   getPostData() {

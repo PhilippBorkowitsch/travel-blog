@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Z_DATA_ERROR } from "zlib";
 
 @Injectable({
   providedIn: "root"
@@ -39,11 +38,10 @@ export class BlogEntriesService {
     });
   }
 
-  addNewComment(_text, _name, _date, _postId, _userId) {
+  addNewComment(_text, _name, _postId, _userId) {
     return this.http.post("http://localhost:3000/comment", {
       text: _text,
       name: _name,
-      date: _date,
       postId: _postId,
       userId: _userId
     });

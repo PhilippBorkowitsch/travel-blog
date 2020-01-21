@@ -14,6 +14,5 @@ export class BlogCommentComponent implements OnInit {
 
   ngOnInit() {
     this.commentJSON = this.dataString;
-    console.log(this.commentJSON);
   }
 }

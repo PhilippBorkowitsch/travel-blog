@@ -29,19 +29,18 @@ export class BlogAComponent implements OnInit {
     // das funktioniert erst, sobald der getter mit der db verknüpft ist
     this._bes.getAllBlogEntries().subscribe(entriesArray => {
       this.entries = entriesArray;
-      console.log(this.entries);
-      this.loadEntries();
     });
   }
 
   // Funktion wird bisher nicht genutzt
   loadEntries() {
-    console.log("load");
+    this._bes.getAllBlogEntries().subscribe(entriesArray => {
+      this.entries = entriesArray;
+    });
   }
 
   openPost(entry) {
     this._sds.changePostData(entry);
-    console.log(this._sds.getPostData());
   }
 
   open() {

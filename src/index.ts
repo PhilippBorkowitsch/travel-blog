@@ -33,7 +33,6 @@ sequelize.sync({ force: true }).then(() => {
   const comment = new Comment({
     text: "abc",
     name: "Testperson",
-    date: "Mon_13_01_2020",
     userId: 1,
     postId: 1
   });
@@ -79,7 +78,7 @@ app.post("/image", imageConnector.postImage);
  * Comment routes
  */
 app.get("/comment", commentConnector.getComments);
-app.get("/comment/post/:postId", commentConnector.getComments);
+app.get("/comment/post/:postId", commentConnector.getCommentsOfPost);
 app.post("/comment", commentConnector.postComment);
 
 // tslint:disable-next-line: no-console

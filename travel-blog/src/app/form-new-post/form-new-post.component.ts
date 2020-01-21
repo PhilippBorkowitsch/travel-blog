@@ -54,7 +54,6 @@ export class FormNewPostComponent implements OnInit {
           } else {
             this.redirect(userid);
           }
-          console.log(newPost);
         });
     } else {
       console.log("this is not a valid password");
@@ -65,7 +64,6 @@ export class FormNewPostComponent implements OnInit {
     // sollte so geändert werden, dass nur das /newpost wieder gelöscht wird
     if (authorId == 1) {
       this._router.navigate(["./"]);
-      console.log(this._router.url);
     } else if (authorId == 2) {
       this._router.navigate(["philippsblog"]);
     } else {
