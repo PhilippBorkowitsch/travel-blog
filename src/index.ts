@@ -76,7 +76,7 @@ app.post("/image", imageConnector.postImage);
  */
 app.get("/comment", commentConnector.getComments);
 app.get("/comment/post/:postId", commentConnector.getComments);
-app.get("/comment", commentConnector.postComment);
+app.post("/comment", commentConnector.postComment);
 
 // tslint:disable-next-line: no-console
 app.listen(port, () => console.log(`Server running at ${port}`));

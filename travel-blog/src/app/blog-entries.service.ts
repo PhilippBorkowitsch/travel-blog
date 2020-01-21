@@ -9,42 +9,45 @@ export class BlogEntriesService {
 
   getAllBlogEntries() {
     return this.http.get("http://localhost:3000/post");
-    // [
-    //   {
-    //     title: "Day 1",
-    //     description: "Heute war ein sonniger Tag. \n blabla",
-    //     id: 3,
-    //     date: "2019_01_13"
-    //   },
-    //   {
-    //     title: "Day 2",
-    //     description: "Heute waren wir shoppen",
-    //     id: 4,
-    //     date: "2019_01_14"
-    //   }
-    // ];
-    // return this.http.post("api/login", author);
   }
 
   addNewPost(_title, _text, _citation, _song, _userId) {
-    this.http
-      .post("http://localhost:3000/post", {
-        title: "test",
-        text: "only just a test",
-        citation: "if you know, you know",
-        song: "baby shark",
-        userId: 1
-      })
-      .subscribe(bla => {
-        console.log("new post: ", bla);
-        return bla;
-      });
+    return this.http.post("http://localhost:3000/post", {
+      title: _title,
+      text: _text,
+      citation: _citation,
+      song: _song,
+      userId: _userId
+    });
   }
 
   getUsers() {
-    this.http.get("http://localhost:3000/user").subscribe(bla => {
-      console.log(bla);
+    return this.http.get("http://localhost:3000/user");
+  }
+
+  getImagesOfPost(_postId) {
+    return this.http.get("http://localhost:3000/image/post/" + _postId);
+  }
+
+  addNewImage(_imageName, _description, _postId) {
+    return this.http.post("http://localhost:3000/image", {
+      imageName: _imageName,
+      description: _description,
+      postId: _postId
     });
+  }
+
+  addNewComment(_text, _name, _postId, _userId) {
+    return this.http.post("http://localhost:3000/comment", {
+      text: _text,
+      name: _name,
+      postId: _postId,
+      userId: _userId
+    });
+  }
+
+  getCommentsOfPost(_postId) {
+    return this.http.get("http://localhost:3000/comment/post/" + _postId);
   }
 
   // deletePost(author, postID) {}
