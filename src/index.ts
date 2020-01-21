@@ -26,11 +26,14 @@ sequelize.sync({ force: true }).then(() => {
   const post = new Post({
     title: "fixtitletest",
     text: "abcd",
+    date: "Mon_13_01_2020",
     userId: 1
   });
 
   const comment = new Comment({
     text: "abc",
+    name: "Testperson",
+    date: "Mon_13_01_2020",
     userId: 1,
     postId: 1
   });

@@ -9,6 +9,7 @@ export const postComment = (
   const comment = new Comment({
     text: req.body.text,
     name: req.body.name,
+    date: req.body.date,
     postId: req.body.postId,
     userId: req.body.userId
   });

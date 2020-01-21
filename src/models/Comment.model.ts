@@ -24,6 +24,9 @@ export class Comment extends Model<Comment> {
   @Column
   name: string;
 
+  @Column
+  date: string;
+
   @ForeignKey(() => Post)
   @Column
   postId: number;
