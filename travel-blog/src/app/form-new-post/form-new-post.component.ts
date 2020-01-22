@@ -25,7 +25,7 @@ export class FormNewPostComponent implements OnInit {
   ngOnInit() {}
 
   open() {
-    this.modalService.open(this.content);
+    this.modalService.open(this.content, {size: 'lg'});
   }
 
   addPost(password, author, title, post, date, citation, song, images) {
