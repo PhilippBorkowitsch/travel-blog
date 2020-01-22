@@ -12,15 +12,16 @@
 </div>
 <div class="entry-footer">
   <div class="entry-comment-form">
-    <div>
-      <input #name placeholder="Name">
+    <h3>Kommentare</h3>
+    <div class="input-form">
+      <input class="form-control" #name placeholder="Name">
     </div>
-    <div>
-      <textarea #comment placeholder="Kommentar"></textarea>
+    <div class="input-form">
+      <textarea class="form-control" #comment placeholder="Kommentar"></textarea>
     </div>
   </div>
-  <div>
-    <button (click)="createNewComment(name.value, comment.value)">Kommentieren</button>
+  <div class="input-form">
+    <button class="btn btn-lg btn-outline-primary" (click)="createNewComment(name.value, comment.value)">Kommentieren</button>
   </div>
   <div class="entry-comment" *ngFor="let comment of comments">
     <app-blog-comment [dataString]="comment"></app-blog-comment>

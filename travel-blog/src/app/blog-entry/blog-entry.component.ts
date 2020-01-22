@@ -16,52 +16,7 @@ export class BlogEntryComponent implements OnInit {
   // die Blogpost Daten im JSON Format
   private postData;
   public comments;
-  private imageObject = [
-    {
-      image: "../../assets/img/2020-01-13-Irland_01.jpg",
-      thumbImage: "../../assets/img/2020-01-13-Irland_01.jpg"
-    },
-    {
-      image: "../../assets/img/2020-01-13-Irland_02.jpg",
-      thumbImage: "../../assets/img/2020-01-13-Irland_02.jpg"
-    },
-    {
-      image: "../../assets/img/Creartograph_1.jpg",
-      thumbImage: "../../assets/img/Creartograph_1.jpg"
-    },
-    {
-      image: "../../assets/img/Creartograph_2.jpg",
-      thumbImage: "../../assets/img/Creartograph_2.jpg"
-    },
-    {
-      image: "../../assets/img/Creartograph_3.jpg",
-      thumbImage: "../../assets/img/Creartograph_3.jpg"
-    },
-    {
-      image: "../../assets/img/Creartograph_4.jpg",
-      thumbImage: "../../assets/img/Creartograph_4.jpg"
-    },
-    {
-      image: "../../assets/img/Creartograph_5.jpg",
-      thumbImage: "../../assets/img/Creartograph_5.jpg"
-    },
-    {
-      image: "../../assets/img/Creartograph_6.jpg",
-      thumbImage: "../../assets/img/Creartograph_6.jpg"
-    },
-    {
-      image: "../../assets/img/Creartograph_7.jpg",
-      thumbImage: "../../assets/img/Creartograph_7.jpg"
-    },
-    {
-      image: "../../assets/img/Creartograph_8.jpg",
-      thumbImage: "../../assets/img/Creartograph_8.jpg"
-    },
-    {
-      image: "../../assets/img/Creartograph_9.jpg",
-      thumbImage: "../../assets/img/Creartograph_9.jpg"
-    }
-  ];
+  private imageObject = [];
 
   constructor(
     private _sds: ShareDataService,
@@ -73,6 +28,18 @@ export class BlogEntryComponent implements OnInit {
     this.postData = this._sds.getPostData();
     this._bes.getCommentsOfPost(this.postData.id).subscribe(comArray => {
       this.comments = comArray;
+    });
+    this._bes.getImagesOfPost(this.postData.id).subscribe(imgArray => {
+      let tempImgArray = JSON.parse(JSON.stringify(imgArray));
+      console.log(tempImgArray);
+      tempImgArray.forEach(img => {
+        this.imageObject.push({
+          image: "../../assets/img/" + img.imageName,
+          thumbImage: "../../assets/img/" + img.imageName,
+          description: img.description
+        });
+      });
+      console.log(this.imageObject);
     });
   }
 

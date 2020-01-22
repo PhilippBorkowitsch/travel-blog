@@ -16,6 +16,10 @@ import { ThrowStmt } from "@angular/compiler";
 })
 export class FormNewPostComponent implements OnInit {
   @ViewChild("content", { static: false }) content: TemplateRef<NgbModalRef>;
+
+  // images-array
+  images = [];
+
   constructor(
     private modalService: NgbModal,
     private _bes: BlogEntriesService,
@@ -25,10 +29,11 @@ export class FormNewPostComponent implements OnInit {
   ngOnInit() {}
 
   open() {
-    this.modalService.open(this.content, {size: 'lg'});
+    this.images = [];
+    this.modalService.open(this.content, { size: "lg" });
   }
 
-  addPost(password, author, title, post, date, citation, song, images) {
+  addPost(password, author, title, post, date, citation, song) {
     let userid;
     if (password == "test123") {
       if (author == "Andrea") {
@@ -42,11 +47,17 @@ export class FormNewPostComponent implements OnInit {
       this._bes
         .addNewPost(title, post, date, citation, song, userid)
         .subscribe(newPost => {
-          // images need to be added still, doesn't work yet
-          if (images != null) {
-            images.forEach(img => {
+          let newPostParam = JSON.parse(JSON.stringify(newPost));
+          // description of images need to be added still, doesn't work yet
+          if (this.images != null) {
+            this.images.forEach(img => {
+              //console.log(img);
               this._bes
-                .addNewImage(img.name, img.description, 1)
+                .addNewImage(
+                  img.name,
+                  /*img.description*/ null,
+                  newPostParam.id
+                )
                 .subscribe(newImage => {
                   this.redirect(userid);
                 });
@@ -69,5 +80,19 @@ export class FormNewPostComponent implements OnInit {
     } else {
       this._router.navigate(["mainpage"]);
     }
+  }
+
+  addImages(event) {
+    //console.log(event.target.files[0]);
+    //console.log(event.target.files[0].name);
+    this.images.push(event.target.files[0]);
+  }
+
+  onUpload() {
+    // upload code goes here
+  }
+
+  addDescription(image, description) {
+    // this is not working, needs a concept.
   }
 }

@@ -29,12 +29,22 @@
                 <input class="form-control" #song placeholder="Song of the day"/>
             </div>
             <div class="input-form">
-                <input class="form-control" #img placeholder="Upload your images"/>
+                <input type="file" style="display: none" class="form-control" #image (change)="addImages($event)" placeholder="Upload your images"/>
+                <button class="btn btn-outline-dark" (click)="image.click()">Upload!</button>
+            </div>
+            <div>
+                <ul class="list-group">
+                    <li *ngFor="let img of images" class="list-group-item">
+                        <label #imgname>{{ img.name }}</label>
+                        <input class="form-control" (change)="addDescription(img.name, imgDescription.value)" #imgDescription placeholder="Description"/>
+                        <button class="btn btn-outline-dark" (click)="removeImage()">Delete</button>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Close</button>
-            <button type="button" class="btn btn-outline-dark" (click)="modal.close();addPost(password.value, author.value, title.value, post.value, date.value, citation.value, song.value, null)">Save</button>
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close();addPost(password.value, author.value, title.value, post.value, date.value, citation.value, song.value)">Save</button>
         </div>
     </div>
 </ng-template>
