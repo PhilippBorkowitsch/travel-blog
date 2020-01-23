@@ -34,10 +34,12 @@ export class BlogEntryComponent implements OnInit {
       let tempImgArray = JSON.parse(JSON.stringify(imgArray));
       tempImgArray.forEach(img => {
         this.imageObject.push({
-          image: "http://localhost:3000/images/" + img.imageName + ".png",
+          image:
+            "https://api.irblog.wuest.dev/images/" + img.imageName + ".png",
           thumbImage:
-          "http://localhost:3000/images/" +
-            img.imageName + ".png" /*,
+            "https://api.irblog.wuest.dev/images/" +
+            img.imageName +
+            ".png" /*,
           description: img.description*/
         });
       });
