@@ -31,7 +31,6 @@ export class BlogEntryComponent implements OnInit {
     });
     this._bes.getImagesOfPost(this.postData.id).subscribe(imgArray => {
       let tempImgArray = JSON.parse(JSON.stringify(imgArray));
-      console.log(tempImgArray);
       tempImgArray.forEach(img => {
         this.imageObject.push({
           image: "../../assets/img/" + img.imageName,
@@ -39,21 +38,18 @@ export class BlogEntryComponent implements OnInit {
           description: img.description
         });
       });
-      console.log(this.imageObject);
     });
   }
 
   createNewComment(name, comment) {
-    console.log(name);
     if (name != "" && comment != "") {
       this._bes
         .addNewComment(comment, name, this.postData.id, null)
         .subscribe(newCom => {
-          console.log(newCom);
           this.comments.push(newCom);
         });
     } else {
-      console.log("you have to fill in the forms");
+      alert("you have to fill in the forms");
     }
   }
 }

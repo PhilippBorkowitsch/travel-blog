@@ -36,7 +36,14 @@ const routes: Routes = [
   },
   {
     path: "philippsblog",
-    component: BlogPComponent
+    component: BlogPComponent,
+    children: [
+      {
+        path: "newpost",
+        component: FormNewPostComponent
+      }
+    ],
+    runGuardsAndResolvers: "always"
   },
   {
     path: "post/:date",

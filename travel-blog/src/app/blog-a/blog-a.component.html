@@ -3,7 +3,7 @@
 </div>
 <div class="list-group blog-a-body">
   <div *ngFor="let entry of entries">
-    <a class="list-group-item" (click)="openPost(entry)" [routerLink]="['../post',entry.date]" mdbWavesEffect>{{ entry.title }}</a>
+    <a class="list-group-item" *ngIf="entry.userId==1" (click)="openPost(entry)" [routerLink]="['../post',entry.date]" mdbWavesEffect>{{ entry.title }}</a>
   </div>
 </div>
 <div class="blog-a-footer">

@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+require("dotenv").config();
 
 import * as userConnector from "./connectors/user.connector";
 import * as postConnector from "./connectors/post.connector";
@@ -16,19 +17,28 @@ import { Image } from "./models/Image.model";
 sequelize.addModels([User, Comment, Post, Image]);
 
 sequelize.sync({ force: true }).then(() => {
-  const user = new User({
-    userName: "Birgitt",
-    password: "Markus",
-    email: "haha@haha.haha",
+  const userAndrea = new User({
+    userName: "Andrea",
+    password: "test123",
+    email: "andrea.celina.sp@gmail.com",
     salt: "willstDuMich"
   });
 
-  const post = new Post({
-    title: "fixtitletest",
-    text: "abcd",
-    date: "Mon_13_01_2020",
-    userId: 1
+  const userPhilipp = new User({
+    userName: "Philipp",
+    password: "test123",
+    email: "philipp.borkowitsch@hpe.com",
+    salt: "willstDuMich"
   });
+
+  const post = new Post([
+    {
+      title: "fixtitletest",
+      text: "abcd",
+      date: "Mon_13_01_2020",
+      userId: 1
+    }
+  ]);
 
   const comment = new Comment({
     text: "abc",
@@ -36,9 +46,13 @@ sequelize.sync({ force: true }).then(() => {
     userId: 1,
     postId: 1
   });
-  user
+
+  userAndrea
     .save()
     .then(() => {
+      return userPhilipp.save();
+    })
+    .then(userPhilipp => {
       return post.save();
     })
     .then(() => {

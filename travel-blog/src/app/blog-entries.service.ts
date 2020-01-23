@@ -8,11 +8,12 @@ export class BlogEntriesService {
   constructor(private http: HttpClient) {}
 
   getAllBlogEntries() {
-    return this.http.get("https://api.irblog.wuest.dev/post");
+    return this.http.get("http://localhost:3000/post");
   }
 
   addNewPost(_title, _text, _date, _citation, _song, _userId) {
-    return this.http.post("https://api.irblog.wuest.dev/post", {
+    console.log("post");
+    return this.http.post("http://localhost:3000/post", {
       title: _title,
       text: _text,
       date: _date,
@@ -23,15 +24,15 @@ export class BlogEntriesService {
   }
 
   getUsers() {
-    return this.http.get("https://api.irblog.wuest.dev/user");
+    return this.http.get("http://localhost:3000/user");
   }
 
   getImagesOfPost(_postId) {
-    return this.http.get("https://api.irblog.wuest.dev/image/post/" + _postId);
+    return this.http.get("http://localhost:3000/post/" + _postId);
   }
 
   addNewImage(_imageName, _description, _postId) {
-    return this.http.post("https://api.irblog.wuest.dev/image", {
+    return this.http.post("http://localhost:3000/image", {
       imageName: _imageName,
       description: _description,
       postId: _postId
@@ -39,7 +40,7 @@ export class BlogEntriesService {
   }
 
   addNewComment(_text, _name, _postId, _userId) {
-    return this.http.post("https://api.irblog.wuest.dev/comment", {
+    return this.http.post("http://localhost:3000/comment", {
       text: _text,
       name: _name,
       postId: _postId,
@@ -48,9 +49,7 @@ export class BlogEntriesService {
   }
 
   getCommentsOfPost(_postId) {
-    return this.http.get(
-      "https://api.irblog.wuest.dev/comment/post/" + _postId
-    );
+    return this.http.get("http://localhost:3000/comment/post/" + _postId);
   }
 
   // deletePost(author, postID) {}
