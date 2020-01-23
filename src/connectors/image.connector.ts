@@ -8,7 +8,7 @@ export const postImage = (req: Request, res: Response, next: NextFunction) => {
   const hope: any = req.files;
   const postImage = hope.picturefile;
   const postFileName = shortid.generate();
-  postImage.mv(path.join(__dirname, '../public/images/') + postFileName + '.png',
+  postImage.mv(path.join(__dirname, '../../public/images/') + postFileName + '.png',
     (err) => {
       if (err) {
         res
