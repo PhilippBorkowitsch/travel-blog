@@ -37,7 +37,6 @@ export class BlogEntriesService {
     formData.append('imageName', _imageName);
     formData.append('description', _description);
     formData.append('postId', _postId);
-
     return this.http.post("http://localhost:3000/image", formData);
   }
 

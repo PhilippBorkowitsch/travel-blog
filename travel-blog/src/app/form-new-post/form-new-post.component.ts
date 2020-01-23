@@ -64,6 +64,7 @@ export class FormNewPostComponent implements OnInit {
               //console.log(img);
               this._bes
                 .addNewImage(
+                  img,
                   img.name,
                   /*img.description*/ null,
                   newPostParam.id

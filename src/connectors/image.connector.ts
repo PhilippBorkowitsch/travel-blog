@@ -1,15 +1,16 @@
 import { Request, Response, NextFunction } from "express";
 import { Image } from "../models/Image.model";
+import { read } from "fs";
 
 const shortid = require('shortid');
 
-export const postImage = (req: Request, res: Response, next: NextFunction) => {
+export const postImage = (req: Request, res: Response, next: NextFunction) => {  
   console.log(req);
   
-  const hope : any = req.files;
+  const hope: any = req.files;
   const postImage = hope.picturefile;
   const postFileName = shortid.generate();
-  postImage.mv('./public/img/' + postFileName + '.png',
+  postImage.mv('./public/images/' + postFileName + '.png',
     (err) => {
       if (err) {
         res
