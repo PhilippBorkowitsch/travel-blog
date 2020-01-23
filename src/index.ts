@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-require("dotenv").config();
 
 import * as userConnector from "./connectors/user.connector";
 import * as postConnector from "./connectors/post.connector";
@@ -31,14 +30,12 @@ sequelize.sync({ force: true }).then(() => {
     salt: "willstDuMich"
   });
 
-  const post = new Post([
-    {
-      title: "fixtitletest",
-      text: "abcd",
-      date: "Mon_13_01_2020",
-      userId: 1
-    }
-  ]);
+  const post = new Post({
+    title: "fixtitletest",
+    text: "abcd",
+    date: "Mon_13_01_2020",
+    userId: 1
+  });
 
   const comment = new Comment({
     text: "abc",
@@ -52,10 +49,11 @@ sequelize.sync({ force: true }).then(() => {
     .then(() => {
       return userPhilipp.save();
     })
-    .then(userPhilipp => {
+    .then(() => {
       return post.save();
     })
-    .then(() => {
+    .then(blasave => {
+      console.log(blasave);
       return comment.save();
     });
 });

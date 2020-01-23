@@ -28,7 +28,7 @@ export class BlogEntriesService {
   }
 
   getImagesOfPost(_postId) {
-    return this.http.get("http://localhost:3000/post/" + _postId);
+    return this.http.get("http://localhost:3000/image/post/" + _postId);
   }
 
   addNewImage(_imageName, _description, _postId) {

@@ -96,6 +96,7 @@ export class FormNewPostComponent implements OnInit {
     //console.log(event.target.files[0]);
     //console.log(event.target.files[0].name);
     this.images.push(event.target.files[0]);
+    console.log(event.target.files[0]);
   }
 
   onUpload() {

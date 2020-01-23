@@ -25,6 +25,7 @@ export class BlogEntryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.imageObject);
     this.postData = this._sds.getPostData();
     this._bes.getCommentsOfPost(this.postData.id).subscribe(comArray => {
       this.comments = comArray;
@@ -34,8 +35,10 @@ export class BlogEntryComponent implements OnInit {
       tempImgArray.forEach(img => {
         this.imageObject.push({
           image: "../../assets/img/" + img.imageName,
-          thumbImage: "../../assets/img/" + img.imageName,
-          description: img.description
+          thumbImage:
+            "../../assets/img/" +
+            img.imageName /*,
+          description: img.description*/
         });
       });
     });
