@@ -8,11 +8,11 @@ export class BlogEntriesService {
   constructor(private http: HttpClient) {}
 
   getAllBlogEntries() {
-    return this.http.get("http://localhost:3000/post");
+    return this.http.get("api.irblog.quest.dev/post");
   }
 
   addNewPost(_title, _text, _date, _citation, _song, _userId) {
-    return this.http.post("http://localhost:3000/post", {
+    return this.http.post("api.irblog.quest.dev/post", {
       title: _title,
       text: _text,
       date: _date,
@@ -23,15 +23,15 @@ export class BlogEntriesService {
   }
 
   getUsers() {
-    return this.http.get("http://localhost:3000/user");
+    return this.http.get("api.irblog.quest.dev/user");
   }
 
   getImagesOfPost(_postId) {
-    return this.http.get("http://localhost:3000/image/post/" + _postId);
+    return this.http.get("api.irblog.quest.dev/image/post/" + _postId);
   }
 
   addNewImage(_imageName, _description, _postId) {
-    return this.http.post("http://localhost:3000/image", {
+    return this.http.post("api.irblog.quest.dev/image", {
       imageName: _imageName,
       description: _description,
       postId: _postId
@@ -39,7 +39,7 @@ export class BlogEntriesService {
   }
 
   addNewComment(_text, _name, _postId, _userId) {
-    return this.http.post("http://localhost:3000/comment", {
+    return this.http.post("api.irblog.quest.dev/comment", {
       text: _text,
       name: _name,
       postId: _postId,
@@ -48,7 +48,7 @@ export class BlogEntriesService {
   }
 
   getCommentsOfPost(_postId) {
-    return this.http.get("http://localhost:3000/comment/post/" + _postId);
+    return this.http.get("api.irblog.quest.dev/comment/post/" + _postId);
   }
 
   // deletePost(author, postID) {}
