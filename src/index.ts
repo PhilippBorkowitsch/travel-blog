@@ -16,10 +16,17 @@ import { Image } from "./models/Image.model";
 sequelize.addModels([User, Comment, Post, Image]);
 
 sequelize.sync({ force: true }).then(() => {
-  const user = new User({
-    userName: "Birgitt",
-    password: "Markus",
-    email: "haha@haha.haha",
+  const userAndrea = new User({
+    userName: "Andrea",
+    password: "test123",
+    email: "andrea.celina.sp@gmail.com",
+    salt: "willstDuMich"
+  });
+
+  const userPhilipp = new User({
+    userName: "Philipp",
+    password: "test123",
+    email: "philipp.borkowitsch@hpe.com",
     salt: "willstDuMich"
   });
 
@@ -36,12 +43,17 @@ sequelize.sync({ force: true }).then(() => {
     userId: 1,
     postId: 1
   });
-  user
+
+  userAndrea
     .save()
+    .then(() => {
+      return userPhilipp.save();
+    })
     .then(() => {
       return post.save();
     })
-    .then(() => {
+    .then(blasave => {
+      console.log(blasave);
       return comment.save();
     });
 });

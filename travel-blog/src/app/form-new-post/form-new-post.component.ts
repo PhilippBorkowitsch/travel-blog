@@ -35,13 +35,23 @@ export class FormNewPostComponent implements OnInit {
 
   addPost(password, author, title, post, date, citation, song) {
     let userid;
-    if (password == "test123") {
+    // the process.env doesn't work
+    if (password == "sB4q?tzpya%") {
       if (author == "Andrea") {
         userid = 1;
       } else if (author == "Philipp") {
         userid = 2;
       } else {
-        userid = null;
+        alert("This author does not exist!");
+        userid = 0;
+      }
+
+      if (citation == "") {
+        citation = null;
+      }
+
+      if (song == "") {
+        song = null;
       }
 
       this._bes
@@ -67,16 +77,16 @@ export class FormNewPostComponent implements OnInit {
           }
         });
     } else {
-      console.log("this is not a valid password");
+      alert("this is not a valid password");
     }
   }
 
   redirect(authorId) {
     // sollte so geändert werden, dass nur das /newpost wieder gelöscht wird
     if (authorId == 1) {
-      this._router.navigate(["./"]);
+      this._router.navigate(["mainpage"]);
     } else if (authorId == 2) {
-      this._router.navigate(["philippsblog"]);
+      this._router.navigate(["mainpage"]);
     } else {
       this._router.navigate(["mainpage"]);
     }
@@ -86,6 +96,7 @@ export class FormNewPostComponent implements OnInit {
     //console.log(event.target.files[0]);
     //console.log(event.target.files[0].name);
     this.images.push(event.target.files[0]);
+    console.log(event.target.files[0]);
   }
 
   onUpload() {

@@ -12,6 +12,7 @@ export class BlogEntriesService {
   }
 
   addNewPost(_title, _text, _date, _citation, _song, _userId) {
+    console.log("post");
     return this.http.post("http://localhost:3000/post", {
       title: _title,
       text: _text,
