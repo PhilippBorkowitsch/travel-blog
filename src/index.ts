@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const fileUpload = require('express-fileupload');
-const path = require('path');
+const fileUpload = require("express-fileupload");
+const path = require("path");
 
 import * as userConnector from "./connectors/user.connector";
 import * as postConnector from "./connectors/post.connector";
@@ -32,32 +32,9 @@ sequelize.sync({ force: false }).then(() => {
     salt: "willstDuMich"
   });
 
-  const post = new Post({
-    title: "fixtitletest",
-    text: "abcd",
-    date: "Mon_13_01_2020",
-    userId: 1
+  userAndrea.save().then(() => {
+    return userPhilipp.save();
   });
-
-  const comment = new Comment({
-    text: "abc",
-    name: "Testperson",
-    userId: 1,
-    postId: 1
-  });
-
-  userAndrea
-    .save()
-    .then(() => {
-      return userPhilipp.save();
-    })
-    .then(() => {
-      return post.save();
-    })
-    .then(blasave => {
-      console.log(blasave);
-      return comment.save();
-    });
 });
 
 const app = express();
@@ -70,8 +47,7 @@ app.use(bodyParser.json());
 
 console.log(__dirname);
 
-
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, "../public")));
 
 /**
  * User routes
