@@ -1,9 +1,25 @@
 import { Request, Response, NextFunction } from "express";
 import { Image } from "../models/Image.model";
 
+const shortid = require('shortid');
+
 export const postImage = (req: Request, res: Response, next: NextFunction) => {
+  console.log(req);
+  
+  const hope : any = req.files;
+  const postImage = hope.picturefile;
+  const postFileName = shortid.generate();
+  postImage.mv('./public/img/' + postFileName + '.png',
+    (err) => {
+      if (err) {
+        res
+          .status(500)
+          .send(err);
+    }
+  });
+
   const image = new Image({
-    imageName: req.body.imageName,
+    imageName: postFileName,
     description: req.body.description,
     postId: req.body.postId
   });

@@ -30,12 +30,14 @@ export class BlogEntriesService {
     return this.http.get("http://localhost:3000/image/post/" + _postId);
   }
 
-  addNewImage(_imageName, _description, _postId) {
-    return this.http.post("http://localhost:3000/image", {
-      imageName: _imageName,
-      description: _description,
-      postId: _postId
-    });
+  addNewImage(_imageFile, _imageName, _description, _postId) {
+    const formData = new FormData();
+    formData.append('picturefile', _imageFile);
+    formData.append('imageName', _imageName);
+    formData.append('description', _description);
+    formData.append('postId', _postId);
+
+    return this.http.post("http://localhost:3000/image", formData);
   }
 
   addNewComment(_text, _name, _postId, _userId) {
