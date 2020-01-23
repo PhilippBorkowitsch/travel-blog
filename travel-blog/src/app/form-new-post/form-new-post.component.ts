@@ -85,11 +85,11 @@ export class FormNewPostComponent implements OnInit {
   redirect(authorId) {
     // sollte so geändert werden, dass nur das /newpost wieder gelöscht wird
     if (authorId == 1) {
-      this._router.navigate(["mainpage"]);
+      this._router.navigate(["./"]);
     } else if (authorId == 2) {
-      this._router.navigate(["mainpage"]);
+      this._router.navigate(["./"]);
     } else {
-      this._router.navigate(["mainpage"]);
+      this._router.navigate(["./"]);
     }
   }
 
