@@ -1,0 +1,14 @@
+<div class="blog-a-header">
+  <h1>Andis Blog</h1>
+</div>
+<div class="list-group blog-a-body">
+  <div *ngFor="let entry of entries">
+    <a class="list-group-item" (click)="openPost(entry)" [routerLink]="['../post',entry.date]" mdbWavesEffect>{{ entry.title }}</a>
+  </div>
+</div>
+<div class="blog-a-footer">
+  <button class="btn btn-lg btn-outline-primary" [routerLink]="['newpost']" (click)="newpost.open()">Add Post</button>
+  <app-form-new-post #newpost></app-form-new-post>
+</div>
+
+<router-outlet></router-outlet>

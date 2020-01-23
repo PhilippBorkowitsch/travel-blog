@@ -1,0 +1,29 @@
+<div class="entry-pre-header">
+  <button class="btn btn-lg btn-outline-primary" [routerLink]="['../../mainpage']">Zurück</button>
+</div>
+<div class="entry-header">
+  <h2>{{ postData.title }}</h2>
+</div>
+<div class="entry-body">
+  <ng-image-slider [images]="imageObject" #nav></ng-image-slider>
+  <div class="entry-post">
+    <pre style="white-space: pre-line">{{ postData.text }}</pre>
+  </div>
+</div>
+<div class="entry-footer">
+  <div class="entry-comment-form">
+    <h3>Kommentare</h3>
+    <div class="input-form">
+      <input class="form-control" #name placeholder="Name">
+    </div>
+    <div class="input-form">
+      <textarea class="form-control" #comment placeholder="Kommentar"></textarea>
+    </div>
+  </div>
+  <div class="input-form">
+    <button class="btn btn-lg btn-outline-primary" (click)="createNewComment(name.value, comment.value)">Kommentieren</button>
+  </div>
+  <div class="entry-comment" *ngFor="let comment of comments">
+    <app-blog-comment [dataString]="comment"></app-blog-comment>
+  </div>
+</div>

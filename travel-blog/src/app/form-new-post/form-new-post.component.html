@@ -1,0 +1,50 @@
+<ng-template #content let-modal>
+    <div class="modal-lg">
+        <div class="modal-header">
+            <h4 class="modal-title">Enter new Post</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="input-form">
+                <input class="form-control" type="password" #password placeholder="Enter password"/>
+            </div>
+            <div class="input-form">
+                <input class="form-control" #author placeholder="Enter your name"/>
+            </div>
+            <div class="input-form">
+                <input class="form-control" #title placeholder="Enter the title of your post"/>
+            </div>
+            <div class="input-form">
+                <input class="form-control" #date placeholder="e.g. Mon_13_01_2020"/>
+            </div>
+            <div class="input-form">
+                <textarea class="form-control" #post placeholder="Your Blog Post"></textarea>
+            </div>
+            <div class="input-form">
+                <input class="form-control" #citation placeholder="Citation of the day"/>
+            </div>
+            <div class="input-form">
+                <input class="form-control" #song placeholder="Song of the day"/>
+            </div>
+            <div class="input-form">
+                <input type="file" style="display: none" class="form-control" #image (change)="addImages($event)" placeholder="Upload your images"/>
+                <button class="btn btn-outline-dark" (click)="image.click()">Upload!</button>
+            </div>
+            <div>
+                <ul class="list-group">
+                    <li *ngFor="let img of images" class="list-group-item">
+                        <label #imgname>{{ img.name }}</label>
+                        <input class="form-control" (change)="addDescription(img.name, imgDescription.value)" #imgDescription placeholder="Description"/>
+                        <button class="btn btn-outline-dark" (click)="removeImage()">Delete</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Close</button>
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close();addPost(password.value, author.value, title.value, post.value, date.value, citation.value, song.value)">Save</button>
+        </div>
+    </div>
+</ng-template>
