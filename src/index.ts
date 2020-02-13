@@ -42,8 +42,8 @@ const port = 3000;
 
 app.use(fileUpload());
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "3mb" }));
+app.use(bodyParser.urlencoded({ limit: "3mb", extended: true }));
 
 console.log(__dirname);
 
